@@ -53,7 +53,7 @@ button {
 
 button:hover {
     background-color: #9B89F7;
-    box-shadow: 0 3px #999, 0 6px #999; 
+    box-shadow: 0 3px #6955D0, 0 6px #6955D0; 
 }
 
 button:active {
@@ -64,14 +64,12 @@ button:active {
 
 #btnClear {
     background-color: #FEA0AB;
-}
-
-#btnClear:hover {
-    background-color: #c0392b;
+    box-shadow: 0 2px #f76071, 0 4px #f76071;
 }
 
 #btnEqual {
     background-color: rgb(241,254,148);
+    box-shadow: 0 2px #9AA755, 0 4px #9AA755;
 }
 
 #btnEqual:hover {
@@ -85,4 +83,5 @@ button:active {
 
 #btnAdd:hover, #btnSubtract:hover, #btnMultiply:hover, #btnDivide:hover {
     background-color: #2980b9;
+    box-shadow: 0 2px #6DA2C1, 0 4px #6DA2C1;
 }
