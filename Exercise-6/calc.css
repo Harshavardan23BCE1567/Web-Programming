@@ -1,4 +1,3 @@
-/* Global styles */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -13,7 +12,7 @@ body {
     background-color: #9CD2EA;
     border-radius: 10px;
     padding: 20px;
-    width: 300px; /* Increased width to make it more spacious */
+    width: 300px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,7 +21,7 @@ body {
     height: 40px;
     text-align: right;
     font-size: 24px;
-    padding: 5px;
+    padding: 2px;
     margin-bottom: 15px;
     border: none;
     background-color: #fff;
@@ -30,11 +29,10 @@ body {
     border-radius: 5px;
 }
 
-/* Table and button styles */
 table {
     width: 100%;
-    border-collapse: separate; /* Change to separate for better control of spacing */
-    border-spacing: 10px; /* Adds space between table cells */
+    border-collapse: separate;
+    border-spacing: 21px;
 }
 
 button {
@@ -46,14 +44,24 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px #999, 0 4px #999;
+    position: relative;
+    top: 0px;
+    left: 0px;
 }
 
 button:hover {
     background-color: #9B89F7;
+    box-shadow: 0 3px #999, 0 6px #999; 
 }
 
-/* Styling for specific buttons */
+button:active {
+    top: 4px;
+    left: 4px;
+    box-shadow: 0 2px #999, 0 4px #999; 
+}
+
 #btnClear {
     background-color: #FEA0AB;
 }
