@@ -7,8 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url('https://www.example.com/background-image.jpg'); /* Replace with your background image URL */
-    background-position: center;
+    background-image: image-set("background.webp");
     background-size: cover;
     background-attachment: fixed;
     color: #999;
@@ -55,7 +54,9 @@ h2 {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    gap: 20px;
 }
+
 
 #ball {
     animation: dogPlayingWithBall 4s infinite;
