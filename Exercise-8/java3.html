@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Confirmation</title>
+</head>
+<body>
+
+    <h1>Student Registration Check</h1>
+
+    <script>
+        // Step 1: Ask the user for their registration number
+        let regNumber = prompt("Please enter your registration number:");
+
+        // Step 2: Ask if they are a student using confirm()
+        let isStudent = confirm("Are you a student?");
+
+        // Step 3: Display a message based on their answer
+        if (isStudent) {
+            alert("Thank you, student. Your registration number is " + regNumber);
+        } else {
+            alert("Thank you! You entered registration number: " + regNumber);
+        }
+    </script>
+
+</body>
+</html>
