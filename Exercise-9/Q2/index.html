@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .plane {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            margin: 5px;
+        }
+        .seat {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 2px solid black;
+            background-color: #28a745; 
+            cursor: pointer;
+        }
+        .seat.booked {
+            background-color: #dc3545; 
+            cursor: not-allowed;
+        }
+        .first-class {
+            background-color: #ffc107; 
+        }
+        .info {
+            margin-top: 20px;
+        }
+        .boarding-pass {
+            border: 2px dashed black;
+            padding: 10px;
+            margin-top: 10px;
+            display: inline-block;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Flight Booking System</h1>
+    <p>Click on a seat to book it.</p>
+
+    <div class="plane">
+        <div class="row">
+            <button class="seat first-class" id="seat1" onclick="bookSeat(1)"></button>
+            <button class="seat first-class" id="seat2" onclick="bookSeat(2)"></button>
+            <button class="seat first-class" id="seat3" onclick="bookSeat(3)"></button>
+            <button class="seat first-class" id="seat4" onclick="bookSeat(4)"></button>
+            <button class="seat first-class" id="seat5" onclick="bookSeat(5)"></button>
+        </div>
+        <div class="row">
+            <button class="seat" id="seat6" onclick="bookSeat(6)"></button>
+            <button class="seat" id="seat7" onclick="bookSeat(7)"></button>
+            <button class="seat" id="seat8" onclick="bookSeat(8)"></button>
+            <button class="seat" id="seat9" onclick="bookSeat(9)"></button>
+            <button class="seat" id="seat10" onclick="bookSeat(10)"></button>
+        </div>
+    </div>
+
+    <div id="output" class="info"></div>
+
+    <script>
+        let seats = new Array(10).fill(0); 
+
+        function bookSeat(seatNumber) {
+            if (seats[seatNumber - 1] === 1) {
+                alert("This seat is already booked.");
+                return;
+            }
+
+            let name = prompt("Enter your name:");
+            if (!name) return;
+            seats[seatNumber - 1] = 1;
+            document.getElementById("seat" + seatNumber).classList.add("booked");
+
+            let seatClass = seatNumber <= 5 ? "First Class" : "Economy";
+
+            document.getElementById("output").innerHTML += `
+                <div class="boarding-pass">
+                    <p>✅ Boarding Pass</p>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Seat Number:</strong> ${seatNumber}</p>
+                    <p><strong>Class:</strong> ${seatClass}</p>
+                </div>
+            `;
+
+            checkFullFlight();
+        }
+
+        function checkFullFlight() {
+            if (!seats.includes(0)) {
+                alert("The flight is fully booked.");
+            }
+        }
+    </script>
+
+</body>
+</html>
