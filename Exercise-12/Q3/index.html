@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="clockCanvas" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('clockCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const clockRadius = 180;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        function drawClock() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, clockRadius, 0, 2 * Math.PI);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.lineWidth = 10;
+            ctx.strokeStyle = '#333';
+            ctx.stroke();
+
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            for (let i = 1; i <= 12; i++) {
+                const angle = (i - 3) * Math.PI / 6;
+                const x = centerX + Math.cos(angle) * (clockRadius - 30);
+                const y = centerY + Math.sin(angle) * (clockRadius - 30);
+                ctx.fillStyle = '#333';
+                ctx.fillText(i, x, y);
+            }
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 6, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+
+            const hourAngle = ((hours % 12) + minutes / 60) * Math.PI / 6 - Math.PI / 2;
+            drawHand(hourAngle, clockRadius - 50, 8, '#333');
+
+            const minuteAngle = (minutes + seconds / 60) * Math.PI / 30 - Math.PI / 2;
+            drawHand(minuteAngle, clockRadius - 20, 6, '#666');
+
+            const secondAngle = (seconds + milliseconds / 1000) * Math.PI / 30 - Math.PI / 2;
+            drawHand(secondAngle, clockRadius - 10, 2, '#ff0000');
+
+            setTimeout(drawClock, 1000);
+        }
+
+        function drawHand(angle, length, width, color) {
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX + Math.cos(angle) * length, centerY + Math.sin(angle) * length);
+            ctx.lineWidth = width;
+            ctx.strokeStyle = color;
+            ctx.stroke();
+        }
+
+        drawClock();
+    </script>
+</body>
+</html>

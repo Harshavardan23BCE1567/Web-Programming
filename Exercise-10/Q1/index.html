@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Data Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hospital Patient Data</h2>
+    <button onclick="displaySortedPatients()">Sort Patients by Age</button>
+    <table id="patientTable">
+        <thead>
+            <tr>
+                <th>P-Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <h3>Check Patient by ID</h3>
+    <input type="number" id="searchId" placeholder="Enter Patient ID">
+    <button onclick="checkPatient()">Check Patient</button>
+    <p id="checkResult"></p>
+    
+    <h3>Filter Patients by Age Range</h3>
+    <input type="number" id="minAge" placeholder="Min Age">
+    <input type="number" id="maxAge" placeholder="Max Age">
+    <button onclick="filterPatients()">Filter</button>
+    <table id="filteredTable">
+        <thead>
+            <tr>
+                <th>P-Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <script>
+        const patients = [
+            { id: 1, name: "Alen", age: 39 },
+            { id: 2, name: "Deena", age: 47 },
+            { id: 3, name: "Diana", age: 21 },
+            { id: 4, name: "Jack", age: 54 },
+            { id: 5, name: "Jain", age: 23 },
+            { id: 6, name: "Kelvin", age: 61 },
+            { id: 7, name: "Louis", age: 69 },
+            { id: 8, name: "Rex", age: 49 }
+        ];
+
+        function displaySortedPatients() {
+            const sortedPatients = [...patients].sort((a, b) => b.age - a.age);
+            const tableBody = document.querySelector("#patientTable tbody");
+            tableBody.innerHTML = "";
+            sortedPatients.forEach(patient => {
+                const row = `<tr><td>${patient.id}</td><td>${patient.name}</td><td>${patient.age}</td></tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function checkPatient() {
+            const id = parseInt(document.getElementById("searchId").value, 10);
+            const found = patients.some(patient => patient.id === id);
+            document.getElementById("checkResult").textContent = found ? "Patient ID Found!" : "Patient ID Not Found";
+        }
+
+        function filterPatients() {
+            const minAge = parseInt(document.getElementById("minAge").value, 10);
+            const maxAge = parseInt(document.getElementById("maxAge").value, 10);
+            const filtered = patients.filter(patient => patient.age >= minAge && patient.age <= maxAge);
+            const tableBody = document.querySelector("#filteredTable tbody");
+            tableBody.innerHTML = "";
+            filtered.forEach(patient => {
+                const row = `<tr><td>${patient.id}</td><td>${patient.name}</td><td>${patient.age}</td></tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>

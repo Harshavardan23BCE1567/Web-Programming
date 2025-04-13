@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            background-color: #9FAC91;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        .order-details {
+            margin-top: 20px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Receipt</h2>
+        <div id="receipt"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let orderData = JSON.parse(localStorage.getItem("orderData"));
+
+            if (!orderData || orderData.order.length === 0) {
+                document.getElementById("receipt").innerHTML = "<p>No order found.</p>";
+                return;
+            }
+
+            let output = `
+                <p><strong>Name:</strong> ${orderData.name}</p>
+                <p><strong>Phone:</strong> ${orderData.phone}</p>
+                <p><strong>Email:</strong> ${orderData.email}</p>
+                <h3>Products Ordered</h3>
+                <table border="1" width="100%" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>`;
+
+            let totalPrice = 0;
+            orderData.order.forEach(item => {
+                let itemTotal = item.qty * item.price;
+                totalPrice += itemTotal;
+                output += `
+                    <tr>
+                        <td>${item.item}</td>
+                        <td>${item.qty} kg</td>
+                        <td>$${item.price}</td>
+                        <td>$${itemTotal}</td>
+                    </tr>`;
+            });
+
+            output += `</table><p class="total">Grand Total: <strong>$${totalPrice}</strong></p>`;
+
+            document.getElementById("receipt").innerHTML = output;
+        });
+    </script>
+</body>
+</html>
