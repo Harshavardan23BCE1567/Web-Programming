@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Registration Number</title>
+</head>
+<body>
+
+    <h1>Enter Your Registration Information</h1>
+
+    <script>
+        let regNo = prompt("Enter your registration number:");
+        let name = prompt("Enter your name:");
+        
+        document.write(`
+            <div style="border: 10px solid red; background-color: #EEF2F5; padding: 10px; width: 450px; height: 100px; position: relative;">
+                <p style="font-size: 18px; color: black; text-align: center; margin: 0; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);">
+                    Registration Number: ${regNo}
+                </p>
+            </div>
+            <br><br>
+        `);
+
+        document.write(`
+            <div style="border: 1px solid; width: fit-content;">
+                <p style="font-size: 36px; font-weight: bold; color: red;">*${name}*</p>
+            </div>
+        `);
+    </script>
+
+</body>
+</html>

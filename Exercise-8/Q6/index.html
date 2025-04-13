@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Total Cost</title>
+    <script>
+        function calc() {
+            var v1 = document.getElementById("t1").value;
+            var v2 = document.getElementById("t2").value;
+
+            v1 = parseInt(v1) || 0;
+            v2 = parseInt(v2) || 0; 
+            var v3 = 10 * v1 + 5 * v2;
+            document.getElementById("t3").value = v3;
+        }
+    </script>
+</head>
+<body>
+    <form name="main">
+        <label for="t1">Adults (₹10.00 each):</label><br>
+        <input type="number" id="t1"><br><br>
+        
+        <label for="t2">Children (₹5.00 each):</label><br>
+        <input type="number" id="t2"><br><br>
+        
+        <input type="button" name="button" value="Total" onclick="calc()">&nbsp;&nbsp;&nbsp;
+        <input type="text" id="t3" readonly="readonly" value="ans">
+    </form>
+</body>
+</html>
